@@ -88,6 +88,7 @@
 @endsection
 
 @section('content')
+    @include('toast')
     <div id="map"></div>
 
     {{-- Modal Form Input Point dengan Desain Elegan --}}
@@ -101,7 +102,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('store') }}" method="POST" id="formInputPoint">
+                <form action="{{ route('store') }}" method="POST" id="formInputPoint" novalidate>
                     @csrf
 
                     <div class="modal-body p-4">
@@ -109,8 +110,7 @@
                             <label for="name" class="form-label fw-semibold text-secondary">Point Name</label>
                             <div class="input-group shadow-sm">
                                 <span class="input-group-text bg-white"><i class="fa-solid fa-tag text-primary"></i></span>
-                                <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="E.g., Candi Prambanan" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="E.g., Candi Prambanan">
                             </div>
                         </div>
 
@@ -160,7 +160,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('polylines.store') }}" method="POST" id="formInputPolylines">
+                <form action="{{ route('store') }}" method="POST" id="formInputPolylines" novalidate>
                     @csrf
 
                     <div class="modal-body p-4">
@@ -168,8 +168,7 @@
                             <label for="name" class="form-label fw-semibold text-secondary">Polylines Name</label>
                             <div class="input-group shadow-sm">
                                 <span class="input-group-text bg-white"><i class="fa-solid fa-tag text-primary"></i></span>
-                                <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="E.g., Candi Prambanan" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="E.g., Candi Prambanan">
                             </div>
                         </div>
 
@@ -221,16 +220,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('polygons.store') }}" method="POST" id="formInputPolygons">
+                <form action="{{ route('store') }}" method="POST" id="formInputPolygons" novalidate>
                     @csrf
 
                     <div class="modal-body p-4">
                         <div class="mb-3">
                             <label for="name" class="form-label fw-semibold text-secondary">Polygons Name</label>
                             <div class="input-group shadow-sm">
-                                <span class="input-group-text bg-white"><i class="fa-solid fa-tag text-primary"></i></span>
-                                <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="E.g., Candi Prambanan" required>
+                                <span class="input-group-text bg-white"><i
+                                        class="fa-solid fa-tag text-primary"></i></span>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="E.g., Candi Prambanan">
                             </div>
                         </div>
 
@@ -323,43 +322,36 @@
             var objectGeometry = Terraformer.geojsonToWKT(drawnJSONObject.geometry);
 
             if (type === 'polyline') {
-
-                // 1. Nilai koordinat WKT ke dalam input form hidden/readonly
+                // 1. Nilai koordinat WKT ke dalam input form
                 $('#geometry_polyline').val(objectGeometry);
-
-                // 2. Tampilkan modal elegan (SUDAH DIPERBAIKI: PAKAI 'S')
+                // 2. Tampilkan modal
                 $('#modalInputPolylines').modal('show');
-
-                // Modal dismiss reload page (SUDAH DIPERBAIKI: PAKAI 'S')
+                // 3. Hapus gambar sementara jika modal ditutup (batal simpan)
                 $('#modalInputPolylines').on('hidden.bs.modal', function() {
-                    location.reload();
+                    map.removeLayer(layer);
                 });
 
             } else if (type === 'polygon' || type === 'rectangle') {
-                // 1. Nilai koordinat WKT ke dalam input form hidden/readonly
+                // 1. Nilai koordinat WKT ke dalam input form
                 $('#geometry_polygons').val(objectGeometry);
-
-                // 2. Tampilkan modal elegan
+                // 2. Tampilkan modal
                 $('#modalInputPolygons').modal('show');
-
-                // Modal dismiss reload page
+                // 3. Hapus gambar sementara jika modal ditutup (batal simpan)
                 $('#modalInputPolygons').on('hidden.bs.modal', function() {
-                    location.reload();
+                    map.removeLayer(layer);
                 });
 
             } else if (type === 'marker') {
                 console.log("Create " + type);
-
-                // 1. Nilai koordinat WKT ke dalam input form hidden/readonly
+                // 1. Nilai koordinat WKT ke dalam input form
                 $('#geometry_point').val(objectGeometry);
-
-                // 2. Tampilkan modal elegan
+                // 2. Tampilkan modal
                 $('#modalInputPoint').modal('show');
-
-                // Modal dismiss reload page
+                // 3. Hapus gambar sementara jika modal ditutup (batal simpan)
                 $('#modalInputPoint').on('hidden.bs.modal', function() {
-                    location.reload();
+                    map.removeLayer(layer);
                 });
+
             } else {
                 console.log('__undefined__');
             }
