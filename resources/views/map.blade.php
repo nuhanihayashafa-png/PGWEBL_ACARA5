@@ -30,7 +30,6 @@
         }
 
         .custom-header {
-            /* Gradien Biru Elegan */
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             border-bottom: none;
@@ -42,7 +41,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Mengubah warna tombol X (close) menjadi putih */
         .custom-header .btn-close {
             filter: invert(1) grayscale(100%) brightness(200%);
             opacity: 0.8;
@@ -91,7 +89,7 @@
     @include('toast')
     <div id="map"></div>
 
-    {{-- Modal Form Input Point dengan Desain Elegan --}}
+    {{-- Modal Form Input Point --}}
     <div class="modal fade" id="modalInputPoint" tabindex="-1" aria-labelledby="modalInputPointLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content custom-modal">
@@ -101,19 +99,17 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <form action="{{ route('store') }}" method="POST" id="formInputPoint" novalidate>
                     @csrf
-
                     <div class="modal-body p-4">
                         <div class="mb-3">
                             <label for="name" class="form-label fw-semibold text-secondary">Point Name</label>
                             <div class="input-group shadow-sm">
                                 <span class="input-group-text bg-white"><i class="fa-solid fa-tag text-primary"></i></span>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="E.g., Candi Prambanan">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="E.g., Candi Prambanan">
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label for="description" class="form-label fw-semibold text-secondary">Description</label>
                             <div class="input-group shadow-sm">
@@ -122,7 +118,6 @@
                                 <textarea class="form-control" id="description" name="description" placeholder="Add some details..." rows="3"></textarea>
                             </div>
                         </div>
-
                         <div class="mb-2">
                             <label for="geometry_point" class="form-label fw-semibold text-secondary">Geometry (WKT
                                 Coordinate)</label>
@@ -133,45 +128,39 @@
                                     name="geometry_point" readonly>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="modal-footer bg-light">
                         <button type="button" class="btn btn-white border shadow-sm" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-elegant shadow-sm">
-                            <i class="fa-solid fa-floppy-disk me-1"></i> Save Data
-                        </button>
+                        <button type="submit" class="btn btn-elegant shadow-sm"><i
+                                class="fa-solid fa-floppy-disk me-1"></i> Save Data</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 
-    {{-- Modal Form Input Polylines dengan Desain Elegan --}}
+    {{-- Modal Form Input Polylines --}}
     <div class="modal fade" id="modalInputPolylines" tabindex="-1" aria-labelledby="modalInputPolylinesLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content custom-modal">
                 <div class="modal-header custom-header">
                     <h5 class="modal-title" id="modalInputPolylinesLabel">
-                        <i class="fa-solid fa-location-dot me-2"></i> Input Polylines Data
+                        <i class="fa-solid fa-route me-2"></i> Input Polylines Data
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <form action="{{ route('store') }}" method="POST" id="formInputPolylines" novalidate>
                     @csrf
-
                     <div class="modal-body p-4">
                         <div class="mb-3">
                             <label for="name" class="form-label fw-semibold text-secondary">Polylines Name</label>
                             <div class="input-group shadow-sm">
                                 <span class="input-group-text bg-white"><i class="fa-solid fa-tag text-primary"></i></span>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="E.g., Candi Prambanan">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="E.g., Jalan Malioboro">
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label for="description" class="form-label fw-semibold text-secondary">Description</label>
                             <div class="input-group shadow-sm">
@@ -181,7 +170,6 @@
                                     rows="3"></textarea>
                             </div>
                         </div>
-
                         <div class="mb-2">
                             <label for="geometry_polyline" class="form-label fw-semibold text-secondary">Geometry (WKT
                                 Coordinate)</label>
@@ -192,47 +180,41 @@
                                     name="geometry_polyline" readonly>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="modal-footer bg-light">
                         <button type="button" class="btn btn-white border shadow-sm"
                             data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-elegant shadow-sm">
-                            <i class="fa-solid fa-floppy-disk me-1"></i> Save Data
-                        </button>
+                        <button type="submit" class="btn btn-elegant shadow-sm"><i
+                                class="fa-solid fa-floppy-disk me-1"></i> Save Data</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 
-    {{-- Modal Form Input Polygons dengan Desain Elegan --}}
+    {{-- Modal Form Input Polygons --}}
     <div class="modal fade" id="modalInputPolygons" tabindex="-1" aria-labelledby="modalInputPolygonsLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content custom-modal">
                 <div class="modal-header custom-header">
                     <h5 class="modal-title" id="modalInputPolygonsLabel">
-                        <i class="fa-solid fa-location-dot me-2"></i> Input Polygons Data
+                        <i class="fa-solid fa-draw-polygon me-2"></i> Input Polygons Data
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <form action="{{ route('store') }}" method="POST" id="formInputPolygons" novalidate>
                     @csrf
-
                     <div class="modal-body p-4">
                         <div class="mb-3">
                             <label for="name" class="form-label fw-semibold text-secondary">Polygons Name</label>
                             <div class="input-group shadow-sm">
                                 <span class="input-group-text bg-white"><i
                                         class="fa-solid fa-tag text-primary"></i></span>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="E.g., Candi Prambanan">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="E.g., Kawasan UGM">
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label for="description" class="form-label fw-semibold text-secondary">Description</label>
                             <div class="input-group shadow-sm">
@@ -242,7 +224,6 @@
                                     rows="3"></textarea>
                             </div>
                         </div>
-
                         <div class="mb-2">
                             <label for="geometry_polygons" class="form-label fw-semibold text-secondary">Geometry (WKT
                                 Coordinate)</label>
@@ -253,18 +234,14 @@
                                     name="geometry_polygons" readonly>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="modal-footer bg-light">
                         <button type="button" class="btn btn-white border shadow-sm"
                             data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-elegant shadow-sm">
-                            <i class="fa-solid fa-floppy-disk me-1"></i> Save Data
-                        </button>
+                        <button type="submit" class="btn btn-elegant shadow-sm"><i
+                                class="fa-solid fa-floppy-disk me-1"></i> Save Data</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -278,26 +255,29 @@
     <script src="https://unpkg.com/@terraformer/wkt"></script>
 
     <script>
-        // 1. Inisialisasi Peta
+        // ==========================================
+        // 1. Inisialisasi Peta & Base Maps
+        // ==========================================
         var map = L.map('map').setView([-7.7829, 110.3671], 15);
 
-        // 2. Base Map OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // 3. Menampilkan marker dari database
-        @foreach ($points as $p)
-            @if (isset($p->latitude) && isset($p->longitude))
-                L.marker([{{ $p->latitude }}, {{ $p->longitude }}]).addTo(map)
-                    .bindPopup("<b>{{ $p->name }}</b><br>{{ $p->description }}");
-            @endif
-        @endforeach
+        var Esri_WorldImagery = L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri'
+            });
 
-        /* Digitize Function */
-        var drawnItems = new L.FeatureGroup();
-        map.addLayer(drawnItems);
+        // ==========================================
+        // 2. Layer Group
+        // ==========================================
+        var databaseItems = L.featureGroup().addTo(map); // Menggunakan featureGroup agar fitBounds mudah
+        var drawnItems = new L.FeatureGroup().addTo(map);
 
+        // ==========================================
+        // 3. Setup Leaflet Draw Control
+        // ==========================================
         var drawControl = new L.Control.Draw({
             draw: {
                 position: 'topleft',
@@ -310,10 +290,11 @@
             },
             edit: false
         });
-
         map.addControl(drawControl);
 
-        // Event saat fitur selesai digambar
+        // ==========================================
+        // 4. Event saat fitur selesai digambar
+        // ==========================================
         map.on('draw:created', function(e) {
             var type = e.layerType,
                 layer = e.layer;
@@ -322,41 +303,90 @@
             var objectGeometry = Terraformer.geojsonToWKT(drawnJSONObject.geometry);
 
             if (type === 'polyline') {
-                // 1. Nilai koordinat WKT ke dalam input form
                 $('#geometry_polyline').val(objectGeometry);
-                // 2. Tampilkan modal
                 $('#modalInputPolylines').modal('show');
-                // 3. Hapus gambar sementara jika modal ditutup (batal simpan)
-                $('#modalInputPolylines').on('hidden.bs.modal', function() {
-                    map.removeLayer(layer);
-                });
-
+                $('#modalInputPolylines').on('hidden.bs.modal', function() { map.removeLayer(layer); });
             } else if (type === 'polygon' || type === 'rectangle') {
-                // 1. Nilai koordinat WKT ke dalam input form
                 $('#geometry_polygons').val(objectGeometry);
-                // 2. Tampilkan modal
                 $('#modalInputPolygons').modal('show');
-                // 3. Hapus gambar sementara jika modal ditutup (batal simpan)
-                $('#modalInputPolygons').on('hidden.bs.modal', function() {
-                    map.removeLayer(layer);
-                });
-
+                $('#modalInputPolygons').on('hidden.bs.modal', function() { map.removeLayer(layer); });
             } else if (type === 'marker') {
-                console.log("Create " + type);
-                // 1. Nilai koordinat WKT ke dalam input form
                 $('#geometry_point').val(objectGeometry);
-                // 2. Tampilkan modal
                 $('#modalInputPoint').modal('show');
-                // 3. Hapus gambar sementara jika modal ditutup (batal simpan)
-                $('#modalInputPoint').on('hidden.bs.modal', function() {
-                    map.removeLayer(layer);
-                });
-
-            } else {
-                console.log('__undefined__');
+                $('#modalInputPoint').on('hidden.bs.modal', function() { map.removeLayer(layer); });
             }
 
             drawnItems.addLayer(layer);
         });
+
+        // ==========================================
+        // 5. FUNGSI FETCH DATA KOMPLIT (Otomatis)
+        // ==========================================
+        function loadMapData(url) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error("Gagal merespon dari: " + url);
+                    return response.json();
+                })
+                .then(data => {
+                    // Jika data kosong, hentikan proses agar tidak error
+                    if (!data || !data.features || data.features.length === 0) return;
+
+                    const geojsonLayer = L.geoJSON(data, {
+                        onEachFeature: function(feature, layer) {
+                            if (feature.properties) {
+                                // Template Popup yang rapi tanpa image_url (karena di DB sudah dihapus)
+                                let popupContent = `
+                                    <div style="font-family: sans-serif; min-width: 180px; text-align: center;">
+                                        <h4 style="margin: 0 0 5px 0; color: #1e3c72;">${feature.properties.name || 'Tanpa Nama'}</h4>
+                                        <hr style="margin: 5px 0; border-top: 1px solid #ccc;">
+                                        <p style="margin: 0; font-size: 14px; color: #555;">${feature.properties.description || 'Tidak ada deskripsi'}</p>
+                                    </div>
+                                `;
+                                layer.bindPopup(popupContent);
+                            }
+                        },
+                        style: function(feature) {
+                            // Styling khusus agar Polygon dan Polyline terlihat elegan
+                            return {
+                                color: "#2980b9", // Warna garis tepi biru elegan
+                                weight: 3,
+                                opacity: 0.9,
+                                fillColor: "#3498db", // Warna isian polygon
+                                fillOpacity: 0.4
+                            };
+                        }
+                    });
+
+                    // Masukkan data ke layer databaseItems
+                    databaseItems.addLayer(geojsonLayer);
+
+                    // Paskan zoom layar agar semua titik/garis/polygon terlihat
+                    map.fitBounds(databaseItems.getBounds(), { padding: [30, 30] });
+                })
+                .catch(error => console.log('Info Peta (Bisa diabaikan jika tabel masih kosong):', error));
+        }
+
+        // --- PANGGIL DATA DARI DATABASE DI SINI ---
+        // Pastikan nama rute ini sama persis dengan yang ada di routes/web.php atau api.php
+        loadMapData('/api/point');       // Memanggil data titik
+        loadMapData('/api/polylines');   // Memanggil data garis (jika ada)
+        loadMapData('/api/polygons');    // Memanggil data area (jika ada)
+
+
+        // ==========================================
+        // 6. Control Layer (Menu pojok kanan atas)
+        // ==========================================
+        var baseMapsOptions = {
+            "OpenStreetMap": osm,
+            "Esri World Imagery": Esri_WorldImagery
+        };
+
+        var overlayMapsOptions = {
+            "Draw Tools (Gambar Baru)": drawnItems,
+            "Data Database": databaseItems
+        };
+
+        L.control.layers(baseMapsOptions, overlayMapsOptions, { collapsed: false }).addTo(map);
     </script>
 @endsection
